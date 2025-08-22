@@ -440,6 +440,16 @@ html,body{height:100%;margin:0;background:
   body {
     padding-bottom: 160px;
   }
+
+    .chip {
+    width: 25px;
+    height: 25px;
+}
+
+.bankroll {
+        left: 100px;
+        right: 150px;
+    }
 }
 
 /* Very small screens - up to 360px */
@@ -514,6 +524,16 @@ html,body{height:100%;margin:0;background:
     left: 4px;
     right: 4px;
   }
+
+      .chip {
+    width: 20px;
+    height: 20px;
+}
+
+.bankroll {
+        left: 50px;
+        right: 150px;
+    }
 }
 
 /* Landscape mobile orientation */
