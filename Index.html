@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BLACKJACK</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="JavaScript.js" defer></script>
+</head>
+<body>
+
+  <!-- יתרה -->
+  <aside class="bankroll">
+    <div class="bankroll__title">יתרה</div>
+    <div class="bankroll__amount" id="bankrollAmount">$500</div>
+  </aside>
+
+  <!-- סטטיסטיקה -->
+  <aside class="stats">
+    <div class="stats__header">
+      <div>שחקן</div>
+      <div>דילר</div>
+    </div>
+    <div class="stats__rows" id="statsRows"></div>
+  </aside>
+
+  <!-- שולחן -->
+  <main class="table">
+
+    <!-- אזור חפיסה/דק -->
+    <div class="deck-area">
+      <div class="card back"></div>
+    </div>
+
+    <!-- קלפים של הדילר -->
+    <section class="hand dealer">
+      <div class="hand__label">
+        <span>דילר</span>
+        <span class="hand__score" id="dealerScore">—</span>
+      </div>
+      <div class="cards" id="dealerCards"></div>
+      <div class="tag" id="dealerTag"></div>
+    </section>
+
+    <!-- קלפים של השחקן (תומך בפיצול לשתי ידיים) -->
+    <section class="player-area" id="playerArea">
+      <div class="hand player active" data-index="0">
+        <div class="hand__label">
+          <span>שחקן</span>
+          <span class="hand__score" id="playerScore0">—</span>
+        </div>
+        <div class="cards" id="playerCards0"></div>
+        <div class="tag" id="playerTag0"></div>
+      </div>
+      <div class="hand player" data-index="1" id="playerHand1" hidden>
+        <div class="hand__label">
+          <span>שחקן (יד 2)</span>
+          <span class="hand__score" id="playerScore1">—</span>
+        </div>
+        <div class="cards" id="playerCards1"></div>
+        <div class="tag" id="playerTag1"></div>
+      </div>
+    </section>
+
+    <!-- אזור ההימור (הצ’יפים שמונחים במרכז) -->
+    <div class="bet-area">
+      <div class="bet-chips" id="betChips"></div>
+      <div class="bet-amount" id="betAmount">$0</div>
+    </div>
+
+    <!-- כפתורי שליטה במהלך סיבוב -->
+    <div class="controls">
+      <button id="hitBtn" class="btn" disabled>קח קלף</button>
+      <button id="standBtn" class="btn" disabled>סטנד</button>
+      <button id="doubleBtn" class="btn" disabled>דאבל</button>
+      <button id="splitBtn" class="btn" disabled>ספליט</button>
+      <button id="newRoundBtn" class="btn btn--ghost" hidden>יד חדשה</button>
+    </div>
+
+    <!-- הוראות/טוסטרים -->
+    <div id="toast" class="toast" hidden></div>
+
+    <!-- שורת הצ’יפים לבחירת הימור (נעלמת אחרי "התחל משחק") -->
+    <div class="chip-row" id="chipRow">
+      <div class="chip-row__chips" id="chipsBar"></div>
+      <div class="chip-row__actions">
+        <button id="clearBetBtn" class="btn btn--ghost">נקה הימור</button>
+        <button id="rebetBtn" class="btn btn--ghost">Rebet</button>
+        <button id="dealBtn" class="btn btn--primary" disabled>התחל משחק</button>
+      </div>
+    </div>
+  </main>
+
+</body>
+</html>
