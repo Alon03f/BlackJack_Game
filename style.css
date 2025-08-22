@@ -182,76 +182,377 @@ html,body{height:100%;margin:0;background:
    מדרגות רספונסיביות מדורגות
    ========================= */
 
-/* ≤ 1200px – צמצום רוחב וגדלי רכיבים מעט */
-@media (max-width:1200px){
-  .stats{ width: clamp(180px, 30vw, 220px); }
+/* Large screens - 1200px and up */
+@media (min-width: 1201px) {
+  .table {
+    margin: 48px auto 100px;
+    padding: 32px 32px 160px;
+  }
 }
 
-/* ≤ 992px – סטטיסטיקה נעה פנימה, דק מצטמצם */
-@media (max-width:992px){
-  .table{ margin-bottom: clamp(120px, 14vw, 160px); }
-  .player-area{ grid-template-columns:1fr; }
-  .stats{ position:static; margin:12px auto 0; width:min(92vw,520px); }
-  .bankroll{ position:static; margin:12px auto 0; display:flex; justify-content:center; }
+/* Medium-large screens - 993px to 1200px */
+@media (max-width: 1200px) and (min-width: 993px) {
+  .stats { 
+    width: clamp(160px, 22vw, 200px); 
+  }
+  .table {
+    margin: 32px auto 90px;
+  }
 }
 
-/* ≤ 768px – כפתורים נעשים רחבים יותר, שורת צ'יפים גלילה אופקית */
-@media (max-width:768px){
-  .controls{ gap:8px; width:94vw; }
-  .btn{ flex:1 1 auto; min-width: calc(50% - 8px); }
-  .chip-row{ width:96%; bottom:-82px; }
-  .chip-row__chips{ gap:12px; }
-  .bankroll__amount{ font-size: clamp(22px, 5.6vw, 28px); }
+/* Medium screens - 769px to 992px */
+@media (max-width: 992px) and (min-width: 769px) {
+  .table { 
+    margin: 24px auto 80px;
+    padding: 20px 20px 140px;
+  }
+  
+  .player-area { 
+    grid-template-columns: 1fr; 
+    gap: 16px;
+  }
+  
+  .bankroll, .stats { 
+    position: relative;
+    margin: 12px auto 0; 
+    width: min(100%, 400px);
+    display: block;
+  }
+  
+  .stats {
+    max-height: none;
+  }
+  
+  .stats__rows {
+    min-height: 120px;
+    max-height: none;
+  }
+  
+  body {
+    padding-top: 0;
+  }
 }
 
-/* ≤ 576px – פריסת מובייל מלאה */
-@media (max-width:576px){
-  /* מסתירים את הדק הפיזי – חוסך מקום */
-  .deck-area{ display:none; }
-
-  .table{
-    margin: 8px auto 110px;
-    padding-bottom: 150px;
+/* Small-medium screens - 577px to 768px */
+@media (max-width: 768px) and (min-width: 577px) {
+  :root {
+    --card-w: clamp(60px, 12vw, 76px);
+    --card-h: clamp(85px, 17vw, 108px);
+    --chip-size: clamp(40px, 8vw, 50px);
   }
-
-  /* כפתורים "דוק" בתחתית כ‑bar */
-  .controls{
-    position:fixed; left:50%; bottom:10px; transform:translateX(-50%);
-    background: rgba(0,0,0,.25);
-    border:1px solid rgba(255,255,255,.12);
-    padding:8px; border-radius:16px; backdrop-filter: blur(6px);
-    width: calc(100% - 20px);
-    gap:8px;
+  
+  .table {
+    margin: 16px auto 70px;
+    padding: 16px 16px 130px;
+    border-radius: 20px;
   }
-  .btn{ min-width: unset; flex:1 1 45%; }
-
-  /* צ'יפים לבחירת הימור – מתחת לשולחן וגלילה */
-  .chip-row{
-    position:fixed; bottom: calc(64px + 10px); /* מעל הכפתורים */
-    width: calc(100% - 20px);
-    background: rgba(0,0,0,.22);
-    border:1px solid rgba(255,255,255,.12);
-    padding:10px; border-radius:16px; backdrop-filter: blur(6px);
-    gap:10px;
+  
+  .controls { 
+    gap: 8px; 
+    width: 94vw; 
+    max-width: 600px;
   }
-  .chip-row__actions{ display:flex; gap:8px; }
-  .chip-row__chips{ gap:10px; }
-
-  /* סטטוסי ניקוד – טקסט קטן יותר */
-  .hand__label{ font-size: var(--fs-md); }
-  .hand__score{ height:26px; min-width:40px; }
-
-  /* סטטיסטיקה ויתרה – למעלה בשתי שורות */
-  .bankroll, .stats{ position:static; width:100%; margin:6px auto 0; }
-  .stats__rows{ min-height: 160px; }
+  
+  .btn { 
+    flex: 1 1 auto; 
+    min-width: calc(50% - 4px);
+    padding: 8px 12px;
+  }
+  
+  .chip-row { 
+    width: 96%; 
+    bottom: -65px; 
+    max-width: 600px;
+  }
+  
+  .chip-row__chips { 
+    gap: 10px; 
+  }
+  
+  .player-area { 
+    grid-template-columns: 1fr; 
+    gap: 12px;
+  }
+  
+  .bankroll, .stats { 
+    position: relative;
+    margin: 8px auto 0; 
+    width: min(96%, 500px);
+  }
+  
+  .stats__rows {
+    min-height: 100px;
+  }
+  
+  .deck-area {
+    top: 16px;
+    left: 16px;
+  }
 }
 
-/* ≤ 420px – התאמות הדוקות במיוחד */
-@media (max-width:420px){
-  :root{
-    --chip: clamp(36px, 14vw, 46px);
-    --card-w: clamp(52px, 28vw, 70px);
+/* Mobile screens - up to 576px */
+@media (max-width: 576px) {
+  :root {
+    --card-w: clamp(45px, 14vw, 65px);
+    --card-h: clamp(64px, 20vw, 92px);
+    --chip-size: clamp(36px, 10vw, 46px);
   }
-  .toast{ font-size: clamp(14px, 5.8vw, 18px); }
-  .controls .btn{ font-size: var(--fs-sm); padding:8px 10px; }
+  
+  /* Hide deck area on mobile to save space */
+  .deck-area { 
+    display: none; 
+  }
+  
+  .table {
+    margin: 8px auto 0;
+    padding: 12px 12px 180px;
+    border-radius: 16px;
+    min-height: calc(100vh - 200px);
+  }
+  
+  .hand {
+    margin-top: 24px;
+  }
+  
+  .hand.dealer {
+    margin-top: 8px;
+  }
+  
+  .player-area {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 16px;
+  }
+  
+  .cards {
+    gap: min(8px, 2vw);
+    min-height: calc(var(--card-h) + 5px);
+  }
+  
+  .bet-area {
+    bottom: 140px;
+  }
+  
+  /* Fixed bottom controls */
+  .controls {
+    position: fixed; 
+    left: 50%; 
+    bottom: 80px; 
+    transform: translateX(-50%);
+    background: rgba(0,0,0,.3);
+    border: 1px solid rgba(255,255,255,.15);
+    padding: 8px; 
+    border-radius: 16px; 
+    backdrop-filter: blur(8px);
+    width: calc(100% - 16px);
+    max-width: 500px;
+    gap: 6px;
+  }
+  
+  .btn { 
+    flex: 1 1 45%; 
+    padding: 8px 6px;
+    border-radius: 10px;
+    min-width: unset;
+  }
+  
+  /* Fixed bottom chip selection */
+  .chip-row {
+    position: fixed; 
+    bottom: 10px;
+    width: calc(100% - 16px);
+    max-width: 500px;
+    background: rgba(0,0,0,.3);
+    border: 1px solid rgba(255,255,255,.15);
+    padding: 8px; 
+    border-radius: 16px; 
+    backdrop-filter: blur(8px);
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  
+  .chip-row__chips {
+    gap: 8px;
+    flex: 1;
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding: 2px 0;
+  }
+  
+  .chip-row__actions { 
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  
+  .chip-row__actions .btn {
+    padding: 6px 10px;
+    font-size: 11px;
+    min-width: 70px;
+  }
+  
+  /* Stats toggle button for mobile */
+  .stats-toggle {
+    display: flex;
+  }
+  
+  /* Hide stats by default on mobile, show when toggled */
+  .stats {
+    display: none;
+    position: fixed;
+    top: 70px;
+    right: 8px;
+    left: 8px;
+    width: auto;
+    max-height: 40vh;
+    z-index: 12;
+  }
+  
+  .stats.show-mobile {
+    display: block;
+  }
+  
+  .stats__rows {
+    min-height: 80px;
+    max-height: 30vh;
+  }
+  
+  /* Bankroll stays visible but smaller */
+  .bankroll {
+    position: fixed;
+    top: 16px;
+    left: 8px;
+    right: 60px;
+    width: auto;
+    text-align: center;
+    z-index: 11;
+  }
+  
+  .bankroll__title {
+    display: inline-block;
+    margin-right: 8px;
+  }
+  
+  .bankroll__amount {
+    display: inline-block;
+  }
+  
+  /* Adjust body padding for fixed elements */
+  body {
+    padding-bottom: 160px;
+  }
+}
+
+/* Very small screens - up to 360px */
+@media (max-width: 360px) {
+  :root {
+    --card-w: clamp(40px, 16vw, 55px);
+    --card-h: clamp(56px, 22vw, 78px);
+    --chip-size: clamp(32px, 12vw, 42px);
+  }
+  
+  .table {
+    padding: 8px 8px 180px;
+    margin: 4px auto 0;
+  }
+  
+  .hand__label {
+    gap: 6px;
+    margin: 0 4px 6px;
+  }
+  
+  .hand__score {
+    min-width: 36px;
+    height: 24px;
+    padding: 0 6px;
+  }
+  
+  .cards {
+    gap: min(6px, 1.5vw);
+  }
+  
+  .controls {
+    width: calc(100% - 8px);
+    padding: 6px;
+    gap: 4px;
+  }
+  
+  .btn {
+    padding: 6px 4px;
+    border-radius: 8px;
+  }
+  
+  .chip-row {
+    width: calc(100% - 8px);
+    padding: 6px;
+    gap: 6px;
+  }
+  
+  .chip-row__chips {
+    gap: 6px;
+  }
+  
+  .chip-row__actions .btn {
+    padding: 4px 6px;
+    font-size: 10px;
+    min-width: 60px;
+  }
+  
+  .bankroll {
+    left: 4px;
+    right: 50px;
+    padding: 8px 10px;
+  }
+  
+  .stats-toggle {
+    width: 38px;
+    height: 38px;
+    font-size: 16px;
+  }
+  
+  .stats {
+    top: 60px;
+    left: 4px;
+    right: 4px;
+  }
+}
+
+/* Landscape mobile orientation */
+@media (max-width: 896px) and (orientation: landscape) and (max-height: 500px) {
+  .table {
+    padding: 8px 8px 120px;
+    margin: 4px auto 0;
+  }
+  
+  .hand {
+    margin-top: 16px;
+  }
+  
+  .player-area {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  
+  .bet-area {
+    bottom: 100px;
+  }
+  
+  .controls {
+    bottom: 60px;
+    padding: 6px;
+  }
+  
+  .chip-row {
+    bottom: 8px;
+    padding: 6px;
+  }
+  
+  .stats {
+    max-height: 30vh;
+  }
+  
+  .stats__rows {
+    min-height: 60px;
+    max-height: 25vh;
+  }
 }
